@@ -1,6 +1,5 @@
 package com.example.stylebook
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -17,23 +16,26 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
-class apointment_page : AppCompatActivity() {
-    @SuppressLint("SuspiciousIndentation")
+class Update_appointment : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_apointment_page)
 
+        setContentView(R.layout.activity_update_appointment)
 
+        val ecid = findViewById<EditText>(R.id.ecid)
         val icon_list =  findViewById<ImageView>(R.id.icon_list)
         val ecname = findViewById<EditText>(R.id.ecname)
         val cservice = findViewById<Spinner>(R.id.cservice)
         val cstyle = findViewById<Spinner>(R.id.cstyle)
         val cdate = findViewById<DatePicker>(R.id.cdate)
         val ctime = findViewById<TimePicker>(R.id.ctime)
-        val btninsert = findViewById<Button>(R.id.btninsert)
+        val btnupdate = findViewById<Button>(R.id.btnupdate)
         val icon_home  = findViewById<ImageView>(R.id.icon_home)
         val demo = DataBaseDemo(this)
+
+
+
 
 
 
@@ -50,17 +52,18 @@ class apointment_page : AppCompatActivity() {
         cstyle.adapter = adapter2
 
 
-       var am_pm : String
+
+        var am_pm : String
 
 
 
-        btninsert.setOnClickListener{
+        btnupdate.setOnClickListener{
 
             var custName =  ecname.text.toString()
             var custSer =  cservice.selectedItem.toString()
             var custStyle = cstyle.selectedItem.toString()
 
-           var date = cdate.dayOfMonth
+            var date = cdate.dayOfMonth
             var mont = cdate.month + 1
             var year = cdate.year
 
@@ -70,17 +73,15 @@ class apointment_page : AppCompatActivity() {
             var hour = ctime.hour
             var minute = ctime.minute
 
-           if(hour > 12){
+            if(hour > 12){
 
                 hour = hour - 12
                 am_pm = "PM"
-           }else{
-               am_pm = "AM"
-           }
+            }else{
+                am_pm = "AM"
+            }
 
-          var custTime = "$hour:$minute:$am_pm"
-
-
+            var custTime = "$hour:$minute:$am_pm"
 
             val cursor1 = demo.readsercharge(custSer)
             var serchrge = 0.0
@@ -99,10 +100,17 @@ class apointment_page : AppCompatActivity() {
             val totalcharge = serchrge + stcharge
             val charge = totalcharge.toString()
 
-            demo.insertData(custName,custStyle,custSer,charge,custDate,custTime)
 
 
-            Toast.makeText(this,"Appointment Successfully",Toast.LENGTH_LONG).show()
+
+                val id = ecid.text.toString()
+
+                demo.updatedata(id,custName,custStyle,custSer,charge,custDate,custTime)
+
+
+
+
+            Toast.makeText(this,"Appointment Update Successfully", Toast.LENGTH_LONG).show()
 
         }
 
@@ -110,7 +118,7 @@ class apointment_page : AppCompatActivity() {
         icon_list.setOnClickListener{
 
 
-           val  intent = Intent(this,Display_page::class.java)
+            val  intent = Intent(this,Display_page::class.java)
             startActivity(intent)
 
         }
@@ -122,9 +130,6 @@ class apointment_page : AppCompatActivity() {
             startActivity(intent)
 
         }
-
-
-
 
 
 

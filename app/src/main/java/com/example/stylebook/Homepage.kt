@@ -1,17 +1,26 @@
 package com.example.stylebook
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.text.InputType
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.setPadding
+import androidx.recyclerview.widget.RecyclerView.Orientation
 
 class Homepage : AppCompatActivity() {
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -23,7 +32,11 @@ class Homepage : AppCompatActivity() {
         val icon_add = findViewById<ImageView>(R.id.icon_add)
         val icon_list = findViewById<ImageView>(R.id.icon_list)
         val view_all = findViewById<Button>(R.id.view_all)
-
+        val editbutton = findViewById<CardView>(R.id.editbutton)
+        val btnaddapointment = findViewById<CardView>(R.id.btnaddapointment)
+        val btndelete = findViewById<CardView>(R.id.btndelete)
+        val addservice = findViewById<CardView>(R.id.addservice)
+        val btnaddstyle = findViewById<CardView>(R.id.btnaddstyle)
 
         var dynamicList = findViewById<LinearLayout>(R.id.dynamicList)
 
@@ -43,6 +56,7 @@ class Homepage : AppCompatActivity() {
                 val name = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseDemo.CUS_CNAME))
                 val style = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseDemo.CUS_STY))
                 val service = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseDemo.CUS_SER))
+                val charges = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseDemo.SER_CHAR))
                 val date = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseDemo.CUS_DATE))
                 val time = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseDemo.CUS_TIME))
 
@@ -51,7 +65,8 @@ class Homepage : AppCompatActivity() {
 
                 itemeView.findViewById<TextView>(R.id.tname).text = name
                 itemeView.findViewById<TextView>(R.id.tstyle).text = style
-                itemeView.findViewById<TextView>(R.id.tmoney).text = service
+                itemeView.findViewById<TextView>(R.id.tser).text = service
+                itemeView.findViewById<TextView>(R.id.tmoney).text = charges
                 itemeView.findViewById<TextView>(R.id.tdate).text = date
                 itemeView.findViewById<TextView>(R.id.ttime).text = time
 
@@ -66,6 +81,173 @@ class Homepage : AppCompatActivity() {
         cursor.close()
 
 
+        editbutton.setOnClickListener{
+            val intent = Intent(this,Update_appointment::class.java)
+            startActivity(intent)
+
+        }
+
+        btnaddapointment.setOnClickListener{
+
+            val intent = Intent(this,apointment_page::class.java)
+            startActivity(intent)
+        }
+
+            btndelete.setOnClickListener{
+
+                val builder = AlertDialog.Builder(this)
+                builder.setTitle("Delete Customer")
+                builder.setMessage("Enter Customer Id For Delete :")
+
+
+                val inpute = EditText(this)
+                inpute.hint = "Customer Id :"
+                inpute.inputType = InputType.TYPE_CLASS_TEXT
+                inpute.setPadding(50,50,50,50)
+
+
+
+                builder.setView(inpute)
+
+
+                builder.setPositiveButton("Delete"){ dialog, _ ->
+
+                    val custId = inpute.text.toString().trim()
+
+                    if(custId.isNotEmpty()) {
+
+                        val result =   demo.deletedata(custId)
+
+                        if(result > 0){
+                            Toast.makeText(this,"Customer Deleted", Toast.LENGTH_LONG).show()
+                        }else{
+
+                            Toast.makeText(this,"Customer Not Found", Toast.LENGTH_LONG).show()
+                        }
+
+                    }
+
+                }
+
+
+                builder.setNegativeButton("Cancle"){ dialoge, _ ->
+
+                    dialoge.dismiss()
+                }
+
+
+                builder.show()
+
+
+            }
+
+
+        addservice.setOnClickListener{
+
+           val builder = AlertDialog.Builder(this)
+           builder.setTitle("Add Services ")
+
+           val layout = LinearLayout(this)
+           layout.orientation=LinearLayout.VERTICAL
+            layout.setPadding(50,50,50,50)
+
+
+            val serinpute = EditText(this)
+            serinpute.hint = "Enter Services"
+            serinpute.inputType = InputType.TYPE_CLASS_TEXT
+            layout.addView(serinpute)
+
+            val moneyinpute = EditText(this)
+            moneyinpute.hint = "Enter Charges"
+            moneyinpute.inputType = InputType.TYPE_CLASS_TEXT
+            layout.addView(moneyinpute)
+
+
+            builder.setView(layout)
+
+            builder.setPositiveButton("Add"){ dialoge, _ ->
+
+                val serviceName = serinpute.text.toString().trim()
+                val charge = moneyinpute.text.toString().trim()
+
+                if (serviceName.isNotEmpty() && charge.isNotEmpty()) {
+
+                    demo.serinsert(serviceName, charge) // pass string values, not EditText
+
+                } else {
+
+                    Toast.makeText(this, "Please enter both service and charge", Toast.LENGTH_SHORT).show()
+
+                }
+
+
+
+            }
+
+            builder.setNegativeButton("Cancle"){ dialoge, _ ->
+
+                dialoge.dismiss()
+            }
+
+           builder.show()
+
+
+        }
+
+        btnaddstyle.setOnClickListener{
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Add Style")
+
+            val layout = LinearLayout(this)
+            layout.orientation=LinearLayout.VERTICAL
+            layout.setPadding(50,50,50,50)
+
+
+
+            val styinpute = EditText(this)
+            styinpute.hint = "Enter Style"
+            styinpute.inputType = InputType.TYPE_CLASS_TEXT
+            layout.addView(styinpute)
+
+
+            val moneyinpute = EditText(this)
+            moneyinpute.hint = "Enter Charges"
+            moneyinpute.inputType = InputType.TYPE_CLASS_TEXT
+            layout.addView(moneyinpute)
+
+
+            builder.setView(layout)
+
+            builder.setPositiveButton("Add"){ dialoge, _ ->
+
+
+                val styName = styinpute.text.toString().trim()
+                val charge = moneyinpute.text.toString().trim()
+
+                if (styName.isNotEmpty() && charge.isNotEmpty()) {
+
+                    demo.styinsert(styName, charge) // pass string values, not EditText
+
+                } else {
+
+                    Toast.makeText(this, "Please enter both service and charge", Toast.LENGTH_SHORT).show()
+
+                }
+
+
+            }
+
+            builder.setNegativeButton("Cancle"){ dialoge, _ ->
+
+                dialoge.dismiss()
+            }
+
+            builder.show()
+
+        }
+
+
+
         view_all.setOnClickListener{
 
             val intent = Intent(this,Display_page::class.java)
@@ -73,21 +255,25 @@ class Homepage : AppCompatActivity() {
         }
 
 
-       icon_add.setOnClickListener{
+        icon_add.setOnClickListener{
 
-           val intent = Intent(this,apointment_page::class.java)
-           startActivity(intent)
-       }
+            val intent = Intent(this,apointment_page::class.java)
+            startActivity(intent)
+        }
 
-       icon_list.setOnClickListener{
+        icon_list.setOnClickListener{
 
-           val intent = Intent(this,Display_page::class.java)
-           startActivity(intent)
+            val intent = Intent(this,Display_page::class.java)
+            startActivity(intent)
 
-       }
+        }
+
+
+
+        }
+
 
 
 
 
     }
-}

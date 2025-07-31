@@ -15,56 +15,84 @@
         android:layout_height="0dp"
         android:layout_weight="1">
 
+
 <LinearLayout
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:backgroundTint="@color/light_gray">
 
 
-    <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
 
-    <TextView
+    <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginLeft="40dp"
-        android:text="StyleBook"
-        android:textSize="20sp"
-        android:textColor="@color/black"
-        />
-
-    <ImageView
-        android:layout_width="50dp"
-        android:layout_height="40dp"
-        android:src="@drawable/usericon"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="220dp"
-
-        />
-
-</LinearLayout>
+        app:cardElevation="6dp">
 
 
-    <View
-        android:id="@+id/divider"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="?android:attr/listDivider"
-        android:layout_marginTop="10dp"
-        />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
+
+            <LinearLayout
+                android:layout_width="490dp"
+                android:layout_height="50dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="15dp"
+                    android:text="StyleBook"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="220dp"
+                    android:layout_marginTop="5dp"
+                    android:src="@drawable/usericon"
+
+                    />
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="?android:attr/listDivider"
+                android:layout_marginTop="5dp"
+                />
+
+
+
+
+
+
+
+
+<androidx.cardview.widget.CardView
+    android:layout_width="380dp"
+    android:layout_height="130dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginLeft="15dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="6dp"
+    app:cardBackgroundColor="@color/light_gray"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@drawable/custome_container"
         android:layout_marginTop="10dp"
         android:layout_marginRight="5dp"
-        android:layout_marginLeft="5dp"
+        android:layout_marginLeft="10dp"
         >
 
     <TextView
@@ -73,7 +101,7 @@
         android:text="Today's Summary"
         android:layout_marginTop="7dp"
         android:layout_marginLeft="130dp"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
 
         android:textSize="15sp" />
 
@@ -92,7 +120,7 @@
             android:layout_marginTop="9dp"
             android:layout_marginLeft="70dp"
             android:textSize="30sp"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             />
 
 
@@ -104,7 +132,7 @@
             android:layout_marginTop="9dp"
             android:layout_marginLeft="180dp"
             android:textSize="30sp"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             />
 
     </LinearLayout>
@@ -124,7 +152,7 @@
         android:layout_marginTop="7dp"
         android:layout_marginLeft="30dp"
         android:textSize="15sp"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         />
 
 
@@ -136,13 +164,18 @@
         android:layout_marginTop="7dp"
         android:layout_marginLeft="155dp"
         android:textSize="15sp"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         />
 
  </LinearLayout>
 
 
+
     </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>
+
 
 
 
@@ -164,16 +197,25 @@
             android:showDividers="middle"/>
 
 
-    <Button
+
+
+    <com.google.android.material.button.MaterialButton
 
         android:id="@+id/view_all"
         android:layout_width="400dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:layout_marginLeft="5dp"
-        android:backgroundTint="@color/black"
+        android:layout_marginLeft="6dp"
+        android:layout_marginBottom="10dp"
+        android:backgroundTint="@color/midium_gray"
+        app:cornerRadius="8dp"
         android:text=" View All Appointments"
-        android:textColor="@color/white" />
+        android:textColor="@color/dark_gray" />
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView >
 
     <TextView
         android:layout_width="wrap_content"
@@ -181,60 +223,238 @@
         android:text="Quick Actions"
         android:textStyle="bold"
         android:textSize="17sp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="22dp"
         android:layout_marginTop="30dp"/>
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:orientation="horizontal">
+        android:layout_height="100dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
 
 
+        <androidx.cardview.widget.CardView
+            android:id="@+id/btnaddapointment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:layout_marginLeft="20dp"
+            app:cardElevation="6dp"
+            app:cardCornerRadius="12dp"
+            android:foreground="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            >
 
 
-    <Button
+            <LinearLayout
+                android:layout_width="150dp"
+                android:layout_height="80dp"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="12dp"
+                android:layout_marginTop="5dp">
 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="0dp"
-        android:layout_marginLeft="10dp"
-       android:backgroundTint="@color/black"
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/addperson"
+                    app:tint="@android:color/black" />
 
-        android:text=" + \n Add Appointment"
-        android:textColor="@color/white" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Add New Appointment"
+                    android:textSize="12sp"
+                    android:textColor="@android:color/black" />
 
-    <Button
 
-        android:layout_width="170dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="50dp"
-        android:backgroundTint="@color/black"
-        android:text=" Update "
-        android:textColor="@color/white" />
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+           android:id="@+id/editbutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:layout_marginLeft="80dp"
+            app:cardElevation="6dp"
+            app:cardCornerRadius="12dp"
+            android:foreground="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true">
+
+
+            <LinearLayout
+                android:layout_width="150dp"
+                android:layout_height="80dp"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="12dp"
+                android:layout_marginTop="5dp">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/iditicon"
+                    app:tint="@android:color/black" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:text="Edit Appointment"
+                    android:textSize="15sp"
+                    android:textColor="@android:color/black" />
+
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
+
+
+        <androidx.cardview.widget.CardView
+
+            android:id="@+id/btndelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:layout_marginLeft="20dp"
+            app:cardElevation="6dp"
+            app:cardCornerRadius="12dp"
+            android:foreground="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true">
+
+
+            <LinearLayout
+                android:layout_width="150dp"
+                android:layout_height="80dp"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="12dp"
+                android:layout_marginTop="5dp">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/deleteicon"
+                    app:tint="@android:color/black" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:text="Delete Appointment"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/black" />
+
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/addservice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:layout_marginLeft="80dp"
+            app:cardElevation="6dp"
+            app:cardCornerRadius="12dp"
+            android:foreground="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true">
+
+
+            <LinearLayout
+                android:layout_width="150dp"
+                android:layout_height="80dp"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="12dp"
+                android:layout_marginTop="5dp">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/scissor"
+                    app:tint="@android:color/black" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Add New Services"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/black" />
+
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
 
     </LinearLayout>
 
 
-       <LinearLayout
-           android:layout_width="wrap_content"
-           android:layout_height="60dp"
-           android:orientation="horizontal" >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
 
 
-    <Button
+        <androidx.cardview.widget.CardView
+            android:id="@+id/btnaddstyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:layout_marginLeft="20dp"
+            app:cardElevation="6dp"
+            app:cardCornerRadius="12dp"
+            android:foreground="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            >
 
-        android:layout_width="170dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="10dp"
-        android:backgroundTint="@color/black"
-        android:text=" - \n Remove"
-        android:textColor="@color/white" />
+
+            <LinearLayout
+                android:layout_width="150dp"
+                android:layout_height="80dp"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="12dp"
+                android:layout_marginTop="5dp">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/addperson"
+                    app:tint="@android:color/black" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Add New Style"
+                    android:textSize="12sp"
+                    android:textColor="@android:color/black" />
 
 
-       </LinearLayout>
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+    </LinearLayout>
+
+
 
 
 
@@ -242,6 +462,10 @@
 </LinearLayout>
 
     </ScrollView>
+<androidx.cardview.widget.CardView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:cardElevation="16dp">
 
   <LinearLayout
       android:id="@+id/footer"
@@ -336,6 +560,6 @@
 
 
   </LinearLayout>
-
+</androidx.cardview.widget.CardView>
 
 </LinearLayout>

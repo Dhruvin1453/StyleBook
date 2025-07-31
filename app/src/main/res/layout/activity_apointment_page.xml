@@ -145,19 +145,18 @@
         android:textSize="15sp"
         />
 
-    <DatePicker
-        android:id="@+id/cdate"
-        android:layout_width="350dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="25dp"
-        android:background="@drawable/edittext_border"
-        android:datePickerMode="spinner"
-        android:calendarViewShown="false"
-        />
 
+         <DatePicker
+             android:id="@+id/cdate"
+             android:layout_width="350dp"
+             android:layout_height="100dp"
+             android:layout_marginLeft="25dp"
+             android:layout_marginTop="10dp"
+             android:background="@drawable/edittext_border"
+             android:calendarViewShown="false"
+             android:datePickerMode="spinner" />
 
-    <TextView
+         <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Time"
@@ -192,22 +191,27 @@
      </LinearLayout>
 
     </ScrollView>
-
+    <androidx.cardview.widget.CardView
+        android:id="@+id/footer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardElevation="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentBottom="true">
 
     <LinearLayout
-        android:id="@+id/footer"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:orientation="horizontal"
         android:gravity="center"
-        android:layout_marginTop="10dp"
-        android:layout_alignParentBottom="true">
+        >
 
         <LinearLayout
             android:layout_width="140dp"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:layout_marginLeft="0dp"
+            android:layout_marginTop="5dp"
             >
 
             <ImageView
@@ -233,7 +237,8 @@
         <LinearLayout
             android:layout_width="120dp"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginTop="5dp">
 
             <ImageView
                 android:id="@+id/icon_add"
@@ -259,7 +264,8 @@
         <LinearLayout
             android:layout_width="150dp"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginTop="5dp">
 
             <ImageView
                 android:id="@+id/icon_list"
@@ -285,7 +291,7 @@
 
 
     </LinearLayout>
-
+    </androidx.cardview.widget.CardView>
 
 
 

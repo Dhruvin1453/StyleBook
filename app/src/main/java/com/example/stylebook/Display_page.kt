@@ -1,13 +1,17 @@
 package com.example.stylebook
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.text.InputType
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.ListView
 import android.widget.SimpleCursorAdapter
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -16,90 +20,79 @@ class Display_page : AppCompatActivity() {
 
 
    lateinit var  demo : DataBaseDemo
+   lateinit var listView1 : ListView
 
 
+    @SuppressLint("SuspiciousIndentation")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_display_page)
 
-        val listView1 = findViewById<ListView>(R.id.listview1)
+        listView1 = findViewById(R.id.listview1)
+
         demo = DataBaseDemo(this)
 
-      val btnshow = findViewById<Button>(R.id.btnshow)
-      val btnupdate = findViewById<Button>(R.id.btnupdate)
-      val btndelete = findViewById<Button>(R.id.btndelete)
-      val eid = findViewById<EditText>(R.id.eid)
+        displaydata()
+
+
+        val updatebutton = findViewById<ImageView>(R.id.updatebutton)
+        val btndelete = findViewById<ImageView>(R.id.btndelete)
+
       val icon_home = findViewById<ImageView>(R.id.icon_home)
        val icon_add = findViewById<ImageView>(R.id.icon_add)
 
 
 
 
-      var name:String?= intent.getStringExtra("Name")
-      var service:String? = intent.getStringExtra("Service")
-      var style : String?= intent.getStringExtra("Style")
-      var date : String?=  intent.getStringExtra("Date")
-      var time : String ?= intent.getStringExtra("Time")
+
+            btndelete.setOnClickListener{
+
+                val builder = AlertDialog.Builder(this)
+                builder.setTitle("Delete Customer")
+                builder.setMessage("Enter Customer Id For Delete :")
 
 
-
-        fun insert(){
-
-             demo.insertData(name,style,service,date,time)
-
-        }
-
-        fun update (){
-
-            eid.visibility = View.VISIBLE
-            val id = eid.text.toString()
-
-            demo.updatedata(id,name,style,service,date,time)
-
-        }
-
-        fun delete(){
+                val inpute = EditText(this)
+                inpute.hint = "Customer Id :"
+                inpute.inputType = InputType.TYPE_CLASS_TEXT
 
 
-            eid.visibility = View.VISIBLE
-            val id = eid.text.toString()
-            demo.deletedata(id)
-        }
-
-        fun displaydata() {
-
-            val cursor = demo.readdata()
-            val columns = arrayOf(DataBaseDemo.CUS_CNAME,DataBaseDemo.CUS_STY,DataBaseDemo.CUS_SER,DataBaseDemo.CUS_DATE,DataBaseDemo.CUS_TIME)
-            val toView = intArrayOf(R.id.tname,R.id.tstyle,R.id.tmoney,R.id.tdate,R.id.ttime)
-
-            val adapter = SimpleCursorAdapter(this,R.layout.list_item,cursor,columns,toView,0)
-            //listview
-
-            listView1.adapter = adapter
+                builder.setView(inpute)
 
 
-        }
+                builder.setPositiveButton("Delete"){ dialog, _ ->
 
-            btnshow.setOnClickListener{
+                    val custId = inpute.text.toString().trim()
 
-                 insert()
-                displaydata()
+                    if(custId.isNotEmpty()) {
+
+                      val result =   demo.deletedata(custId)
+                        displaydata()
+
+                        if(result > 0){
+                                        Toast.makeText(this,"Customer Deleted",Toast.LENGTH_LONG).show()
+                        }else{
+
+                                         Toast.makeText(this,"Customer Not Found",Toast.LENGTH_LONG).show()
+                        }
+
+                    }
+
+                }
+
+
+                builder.setNegativeButton("Cancle"){ dialoge, _ ->
+
+                    dialoge.dismiss()
+                }
+
+
+                builder.show()
+
 
             }
 
 
-           btnupdate.setOnClickListener{
-
-               update()
-               displaydata()
-           }
-
-        btndelete.setOnClickListener{
-
-            delete()
-            displaydata()
-        }
 
 
         icon_home.setOnClickListener{
@@ -116,14 +109,37 @@ class Display_page : AppCompatActivity() {
             startActivity(intent)
         }
 
+        updatebutton.setOnClickListener{
 
+            val intent = Intent(this,Update_appointment::class.java)
+            startActivity(intent)
 
         }
 
 
 
+        }
+
+
+    fun displaydata() {
+
+        val cursor = demo.readdata()
+        val columns = arrayOf(DataBaseDemo.CUS_ID,DataBaseDemo.CUS_CNAME,DataBaseDemo.CUS_STY,DataBaseDemo.CUS_SER,DataBaseDemo.CUS_CHAR,DataBaseDemo.CUS_DATE,DataBaseDemo.CUS_TIME)
+        val toView = intArrayOf(R.id.tid,R.id.tname,R.id.tstyle,R.id.tser,R.id.tmoney,R.id.tdate,R.id.ttime)
+
+        val adapter = SimpleCursorAdapter(this,R.layout.list_item,cursor,columns,toView,0)
+        //listview
+
+        listView1.adapter = adapter
+
+
+    }
 
 
 
 
     }
+
+
+
+

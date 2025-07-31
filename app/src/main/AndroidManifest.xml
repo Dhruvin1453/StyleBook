@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StyleBook">
         <activity
+            android:name=".Update_appointment"
+            android:exported="false" />
+        <activity
             android:name=".Display_page"
             android:exported="false" />
         <activity
