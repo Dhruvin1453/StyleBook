@@ -3,7 +3,6 @@ package com.example.stylebook
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.DatePicker
@@ -12,10 +11,7 @@ import android.widget.ImageView
 import android.widget.Spinner
 import android.widget.TimePicker
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 
 class apointment_page : AppCompatActivity() {
     @SuppressLint("SuspiciousIndentation")
@@ -25,14 +21,14 @@ class apointment_page : AppCompatActivity() {
         setContentView(R.layout.activity_apointment_page)
 
 
-        val icon_list =  findViewById<ImageView>(R.id.icon_list)
+        val icon_list = findViewById<ImageView>(R.id.icon_list)
         val ecname = findViewById<EditText>(R.id.ecname)
         val cservice = findViewById<Spinner>(R.id.cservice)
         val cstyle = findViewById<Spinner>(R.id.cstyle)
         val cdate = findViewById<DatePicker>(R.id.cdate)
         val ctime = findViewById<TimePicker>(R.id.ctime)
         val btninsert = findViewById<Button>(R.id.btninsert)
-        val icon_home  = findViewById<ImageView>(R.id.icon_home)
+        val icon_home = findViewById<ImageView>(R.id.icon_home)
         val demo = DataBaseDemo(this)
 
 
@@ -40,27 +36,27 @@ class apointment_page : AppCompatActivity() {
         ctime.setIs24HourView(true)
 
         val service = demo.readser()
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item,service)
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, service)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         cservice.adapter = adapter
 
         val style = demo.readset()
-        val adapter2 = ArrayAdapter(this, android.R.layout.simple_spinner_item,style)
+        val adapter2 = ArrayAdapter(this, android.R.layout.simple_spinner_item, style)
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         cstyle.adapter = adapter2
 
 
-       var am_pm : String
+        var am_pm: String
 
 
 
-        btninsert.setOnClickListener{
+        btninsert.setOnClickListener {
 
-            var custName =  ecname.text.toString()
-            var custSer =  cservice.selectedItem.toString()
+            var custName = ecname.text.toString()
+            var custSer = cservice.selectedItem.toString()
             var custStyle = cstyle.selectedItem.toString()
 
-           var date = cdate.dayOfMonth
+            var date = cdate.dayOfMonth
             var mont = cdate.month + 1
             var year = cdate.year
 
@@ -70,16 +66,15 @@ class apointment_page : AppCompatActivity() {
             var hour = ctime.hour
             var minute = ctime.minute
 
-           if(hour > 12){
+            if (hour > 12) {
 
                 hour = hour - 12
                 am_pm = "PM"
-           }else{
-               am_pm = "AM"
-           }
+            } else {
+                am_pm = "AM"
+            }
 
-          var custTime = "$hour:$minute:$am_pm"
-
+            var custTime = "$hour:$minute:$am_pm"
 
 
             val cursor1 = demo.readsercharge(custSer)
@@ -99,35 +94,34 @@ class apointment_page : AppCompatActivity() {
             val totalcharge = serchrge + stcharge
             val charge = totalcharge.toString()
 
-            demo.insertData(custName,custStyle,custSer,charge,custDate,custTime)
+            demo.insertData(custName, custStyle, custSer, charge, custDate, custTime)
 
 
-            Toast.makeText(this,"Appointment Successfully",Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Appointment Successfully", Toast.LENGTH_LONG).show()
 
         }
 
 
-        icon_list.setOnClickListener{
+        icon_list.setOnClickListener {
 
 
-           val  intent = Intent(this,Display_page::class.java)
+            val intent = Intent(this, Display_page::class.java)
             startActivity(intent)
 
         }
 
 
-        icon_home.setOnClickListener{
+        icon_home.setOnClickListener {
 
-            val intent = Intent(this,Homepage::class.java)
+            val intent = Intent(this, Homepage::class.java)
             startActivity(intent)
 
         }
-
-
-
-
-
 
 
     }
+
 }
+
+
+

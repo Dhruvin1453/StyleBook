@@ -24,6 +24,7 @@ class Homepage : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+
          var  demo:DataBaseDemo
 
 
@@ -38,48 +39,9 @@ class Homepage : AppCompatActivity() {
         val addservice = findViewById<CardView>(R.id.addservice)
         val btnaddstyle = findViewById<CardView>(R.id.btnaddstyle)
 
-        var dynamicList = findViewById<LinearLayout>(R.id.dynamicList)
-
-        dynamicList.removeAllViews()
-
-
         demo = DataBaseDemo(this)
 
-        val cursor = demo.readthreedata()
-
-
-        if(cursor.moveToFirst()){
-
-            do{
-
-
-                val name = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseDemo.CUS_CNAME))
-                val style = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseDemo.CUS_STY))
-                val service = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseDemo.CUS_SER))
-                val charges = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseDemo.SER_CHAR))
-                val date = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseDemo.CUS_DATE))
-                val time = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseDemo.CUS_TIME))
-
-               val itemeView = layoutInflater.inflate(R.layout.list_item,dynamicList,false)
-
-
-                itemeView.findViewById<TextView>(R.id.tname).text = name
-                itemeView.findViewById<TextView>(R.id.tstyle).text = style
-                itemeView.findViewById<TextView>(R.id.tser).text = service
-                itemeView.findViewById<TextView>(R.id.tmoney).text = charges
-                itemeView.findViewById<TextView>(R.id.tdate).text = date
-                itemeView.findViewById<TextView>(R.id.ttime).text = time
-
-
-                dynamicList.addView(itemeView)
-
-            }while (cursor.moveToNext())
-
-
-        }
-
-        cursor.close()
-
+        updatelist()
 
         editbutton.setOnClickListener{
             val intent = Intent(this,Update_appointment::class.java)
@@ -119,6 +81,8 @@ class Homepage : AppCompatActivity() {
                         val result =   demo.deletedata(custId)
 
                         if(result > 0){
+                            updatestat()
+                            updatelist()
                             Toast.makeText(this,"Customer Deleted", Toast.LENGTH_LONG).show()
                         }else{
 
@@ -268,12 +232,82 @@ class Homepage : AppCompatActivity() {
 
         }
 
-
+         updatestat()
 
         }
 
 
 
-
-
+    override fun onResume() {
+        super.onResume()
+        updatestat()
+       updatelist()
     }
+
+    private fun updatestat() {
+
+        val tapointments = findViewById<TextView>(R.id.tapointments)
+        val trevanue = findViewById<TextView>(R.id.trevanue)
+
+       val demo:DataBaseDemo = DataBaseDemo(this)
+        val db= demo.readableDatabase
+
+        val cursor1 = db.rawQuery("select count(*) from CUST",null)
+        cursor1.moveToFirst()
+        var appointmments = cursor1.getInt(0)
+        cursor1.close()
+
+
+        val cursor2 = db.rawQuery("SELECT SUM(_charge) FROM CUST",null)
+        cursor2.moveToFirst()
+        var totalcharge = cursor2.getDouble(0)
+        cursor2.close()
+
+
+        tapointments.text = "$appointmments"
+        trevanue.text = "$totalcharge"
+    }
+
+    private fun updatelist() {
+        var dynamicList = findViewById<LinearLayout>(R.id.dynamicList)
+        dynamicList.removeAllViews()
+
+        val demo:DataBaseDemo
+        demo = DataBaseDemo(this)
+
+        val cursor = demo.readthreedata()
+
+
+        if(cursor.moveToFirst()){
+
+            do{
+
+                val id = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseDemo.CUS_ID))
+                val name = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseDemo.CUS_CNAME))
+                val style = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseDemo.CUS_STY))
+                val service = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseDemo.CUS_SER))
+                val charges = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseDemo.SER_CHAR))
+                val date = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseDemo.CUS_DATE))
+                val time = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseDemo.CUS_TIME))
+
+                val itemeView = layoutInflater.inflate(R.layout.list_item,dynamicList,false)
+
+                itemeView.findViewById<TextView>(R.id.tid).text = id
+                itemeView.findViewById<TextView>(R.id.tname).text = name
+                itemeView.findViewById<TextView>(R.id.tstyle).text = style
+                itemeView.findViewById<TextView>(R.id.tser).text = service
+                itemeView.findViewById<TextView>(R.id.tmoney).text = charges
+                itemeView.findViewById<TextView>(R.id.tdate).text = date
+                itemeView.findViewById<TextView>(R.id.ttime).text = time
+
+
+                dynamicList.addView(itemeView)
+
+            }while (cursor.moveToNext())
+
+
+        }
+
+        cursor.close()
+    }
+}
