@@ -12,6 +12,7 @@ import android.widget.Spinner
 import android.widget.TimePicker
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class apointment_page : AppCompatActivity() {
     @SuppressLint("SuspiciousIndentation")
@@ -21,14 +22,14 @@ class apointment_page : AppCompatActivity() {
         setContentView(R.layout.activity_apointment_page)
 
 
-        val icon_list = findViewById<ImageView>(R.id.icon_list)
+
         val ecname = findViewById<EditText>(R.id.ecname)
         val cservice = findViewById<Spinner>(R.id.cservice)
         val cstyle = findViewById<Spinner>(R.id.cstyle)
         val cdate = findViewById<DatePicker>(R.id.cdate)
         val ctime = findViewById<TimePicker>(R.id.ctime)
         val btninsert = findViewById<Button>(R.id.btninsert)
-        val icon_home = findViewById<ImageView>(R.id.icon_home)
+        val footer = findViewById<BottomNavigationView>(R.id.footer)
         val demo = DataBaseDemo(this)
 
 
@@ -102,20 +103,28 @@ class apointment_page : AppCompatActivity() {
         }
 
 
-        icon_list.setOnClickListener {
 
+        footer.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.icon_home -> {
 
-            val intent = Intent(this, Display_page::class.java)
-            startActivity(intent)
+                    val intent = Intent(this,Homepage::class.java)
+                    startActivity(intent)
+                    true
 
-        }
-
-
-        icon_home.setOnClickListener {
-
-            val intent = Intent(this, Homepage::class.java)
-            startActivity(intent)
-
+                }
+                R.id.icon_add -> {
+                    val intent = Intent(this,apointment_page::class.java)
+                    startActivity(intent)
+                    true
+                }
+                R.id.icon_list -> {
+                    val intent = Intent(this,Display_page::class.java)
+                    startActivity(intent)
+                    true
+                }
+                else -> false
+            }
         }
 
 

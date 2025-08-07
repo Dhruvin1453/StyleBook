@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/t1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="110dp"
+        android:layout_gravity="center"
         android:layout_marginTop="200dp"
         android:text="Welcome Back"
         android:textStyle="bold"
@@ -23,8 +25,7 @@
         android:id="@+id/t2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="245dp"
-        android:layout_marginLeft="85dp"
+       android:layout_gravity="center"
         android:text="Login in to book your appointment"
         android:textSize="18dp"
         />
@@ -35,19 +36,19 @@
         android:id="@+id/t3"
         android:text="Email"
         android:textStyle="bold"
-        android:layout_marginTop="300dp"
-        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
         android:textSize="15sp"
 
         />
 
     <EditText
         android:id="@+id/email"
-        android:layout_width="350dp"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="330dp"
+       android:layout_margin="20dp"
         android:hint="Enter Your Email"
+        android:textColorHint="@color/black"
         android:textSize="15sp"
         android:textStyle="bold"
         android:inputType="textEmailAddress"
@@ -61,19 +62,18 @@
         android:layout_height="wrap_content"
         android:id="@+id/t4"
         android:text="Password"
-        android:layout_marginTop="400dp"
-        android:layout_marginLeft="30dp"
+        android:layout_marginLeft="20dp"
         android:textSize="15sp"
         android:textStyle="bold"
         />
 
     <EditText
         android:id="@+id/pass"
-        android:layout_width="350dp"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="430dp"
+        android:layout_margin="20dp"
         android:hint="Enter Your Password"
+        android:textColorHint="@color/black"
         android:textSize="15sp"
         android:textStyle="bold"
         android:inputType="textPassword"
@@ -82,16 +82,41 @@
 
         />
 
+
+
     <Button
         android:id="@+id/login"
-        android:layout_width="350dp"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="530dp"
+        android:layout_margin="20dp"
         android:text="Login"
         android:backgroundTint="@color/black"
 
         />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
 
-</RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Don't have an account?"/>
+
+        <TextView
+            android:id="@+id/signup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:textStyle="bold"
+            android:text="Sign Up"/>
+
+
+
+    </LinearLayout>>
+
+
+</LinearLayout>

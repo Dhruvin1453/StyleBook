@@ -15,6 +15,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class Update_appointment : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,14 +25,14 @@ class Update_appointment : AppCompatActivity() {
         setContentView(R.layout.activity_update_appointment)
 
         val ecid = findViewById<EditText>(R.id.ecid)
-        val icon_list =  findViewById<ImageView>(R.id.icon_list)
         val ecname = findViewById<EditText>(R.id.ecname)
         val cservice = findViewById<Spinner>(R.id.cservice)
         val cstyle = findViewById<Spinner>(R.id.cstyle)
         val cdate = findViewById<DatePicker>(R.id.cdate)
         val ctime = findViewById<TimePicker>(R.id.ctime)
         val btnupdate = findViewById<Button>(R.id.btnupdate)
-        val icon_home  = findViewById<ImageView>(R.id.icon_home)
+        val footer = findViewById<BottomNavigationView>(R.id.footer)
+
         val demo = DataBaseDemo(this)
 
 
@@ -115,20 +116,28 @@ class Update_appointment : AppCompatActivity() {
         }
 
 
-        icon_list.setOnClickListener{
 
+        footer.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.icon_home -> {
 
-            val  intent = Intent(this,Display_page::class.java)
-            startActivity(intent)
+                    val intent = Intent(this,Homepage::class.java)
+                    startActivity(intent)
+                    true
 
-        }
-
-
-        icon_home.setOnClickListener{
-
-            val intent = Intent(this,Homepage::class.java)
-            startActivity(intent)
-
+                }
+                R.id.icon_add -> {
+                    val intent = Intent(this,apointment_page::class.java)
+                    startActivity(intent)
+                    true
+                }
+                R.id.icon_list -> {
+                    val intent = Intent(this,Display_page::class.java)
+                    startActivity(intent)
+                    true
+                }
+                else -> false
+            }
         }
 
 

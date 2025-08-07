@@ -11,7 +11,17 @@ class DataBaseDemo(context: Context) : SQLiteOpenHelper(context,DATABASE_NAME,nu
     companion object{
 
         const val  DATABASE_NAME = "MYDATA"
-        const val  DATABASE_VERSION = 6
+        const val  DATABASE_VERSION = 8
+
+
+        const val USER_TABLE = "USER"
+        const val USER_ID = "_uid"
+        const val USER_NAME = "_uname"
+        const val USER_EMAIL = "_uemail"
+        const val USER_PHONE = "_uphone"
+        const val USER_PASS = "_upass"
+
+
         const val TABLE_NAME = "CUST"
         const val CUS_ID = "_id"
         const val CUS_CNAME = "_cname"
@@ -33,9 +43,13 @@ class DataBaseDemo(context: Context) : SQLiteOpenHelper(context,DATABASE_NAME,nu
         const val STY_CHAR = "_stcharge"
         const val STTABLE_NAME = "STYLE"
 
+
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
+
+        val utable = "CREATE TABLE IF NOT EXISTS $USER_TABLE($USER_ID INTEGER PRIMARY KEY AUTOINCREMENT,$USER_NAME TEXT,$USER_EMAIL TEXT,$USER_PHONE TEXT,$USER_PASS TEXT)"
+        db?.execSQL(utable)
 
         val creattable = "CREATE TABLE IF NOT EXISTS $TABLE_NAME($CUS_ID INTEGER PRIMARY KEY AUTOINCREMENT,$CUS_CNAME TEXT ,$CUS_STY TEXT,$CUS_SER TEXT,$CUS_CHAR TEXT,$CUS_DATE TEXT,$CUS_TIME TEXT)"
         db?.execSQL(creattable)
@@ -48,9 +62,15 @@ class DataBaseDemo(context: Context) : SQLiteOpenHelper(context,DATABASE_NAME,nu
         val sttable = "CREATE TABLE IF NOT EXISTS $STTABLE_NAME($STY_ID INTEGER PRIMARY KEY AUTOINCREMENT,$STY_NAME TEXT,$STY_CHAR TEXT)"
         db?.execSQL(sttable)
 
+
+
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, p1: Int, p2: Int) {
+
+        val dropqu = "DROP TABLE IF EXISTS $USER_TABLE"
+        db?.execSQL(dropqu)
+
 
         val dropquery = "DROP TABLE IF EXISTS $TABLE_NAME"
         db?.execSQL(dropquery)
@@ -65,9 +85,31 @@ class DataBaseDemo(context: Context) : SQLiteOpenHelper(context,DATABASE_NAME,nu
         onCreate(db)
 
 
+ }
 
 
+    fun userinsert(username:String,userema:String,userphone:String,userpass:String):Boolean{
 
+        val db = writableDatabase
+        val value = ContentValues()
+        value.put(USER_NAME, username)
+        value.put(USER_EMAIL, userema)
+        value.put(USER_PHONE, userphone)
+        value.put(USER_PASS, userpass)
+        val result=  db.insert(USER_TABLE, null, value)
+
+        return result != -1L
+
+    }
+
+    fun checkUser(email: String, pass: String): Boolean {
+        val db = this.readableDatabase
+        val query = "SELECT * FROM $USER_TABLE WHERE $USER_EMAIL = ? AND $USER_PASS = ?"
+        val cursor = db.rawQuery(query, arrayOf(email, pass))
+        val exists = cursor.count > 0
+        cursor.close()
+        db.close()
+        return exists
     }
 
 

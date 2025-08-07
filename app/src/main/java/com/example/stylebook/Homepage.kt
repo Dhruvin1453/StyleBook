@@ -18,6 +18,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.setPadding
 import androidx.recyclerview.widget.RecyclerView.Orientation
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class Homepage : AppCompatActivity() {
     @SuppressLint("MissingInflatedId")
@@ -30,18 +31,21 @@ class Homepage : AppCompatActivity() {
 
         setContentView(R.layout.activity_homepage)
 
-        val icon_add = findViewById<ImageView>(R.id.icon_add)
-        val icon_list = findViewById<ImageView>(R.id.icon_list)
-        val view_all = findViewById<Button>(R.id.view_all)
+        val footer = findViewById<BottomNavigationView>(R.id.footer)
         val editbutton = findViewById<CardView>(R.id.editbutton)
         val btnaddapointment = findViewById<CardView>(R.id.btnaddapointment)
         val btndelete = findViewById<CardView>(R.id.btndelete)
         val addservice = findViewById<CardView>(R.id.addservice)
         val btnaddstyle = findViewById<CardView>(R.id.btnaddstyle)
-
+        val view_all = findViewById<Button>(R.id.view_all)
         demo = DataBaseDemo(this)
 
         updatelist()
+
+        view_all.setOnClickListener{
+            val intent = Intent(this,Display_page::class.java)
+            startActivity(intent)
+        }
 
         editbutton.setOnClickListener{
             val intent = Intent(this,Update_appointment::class.java)
@@ -210,27 +214,32 @@ class Homepage : AppCompatActivity() {
 
         }
 
+        footer.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.icon_home -> {
 
+                    val intent = Intent(this,Homepage::class.java)
+                    startActivity(intent)
+                    true
 
-        view_all.setOnClickListener{
-
-            val intent = Intent(this,Display_page::class.java)
-            startActivity(intent)
+                }
+                R.id.icon_add -> {
+                    val intent = Intent(this,apointment_page::class.java)
+                    startActivity(intent)
+                    true
+                }
+                R.id.icon_list -> {
+                    val intent = Intent(this,Display_page::class.java)
+                    startActivity(intent)
+                    true
+                }
+                else -> false
+            }
         }
 
 
-        icon_add.setOnClickListener{
 
-            val intent = Intent(this,apointment_page::class.java)
-            startActivity(intent)
-        }
 
-        icon_list.setOnClickListener{
-
-            val intent = Intent(this,Display_page::class.java)
-            startActivity(intent)
-
-        }
 
          updatestat()
 

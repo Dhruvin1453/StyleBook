@@ -15,6 +15,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class Display_page : AppCompatActivity() {
 
@@ -37,9 +38,7 @@ class Display_page : AppCompatActivity() {
 
         val updatebutton = findViewById<ImageView>(R.id.updatebutton)
         val btndelete = findViewById<ImageView>(R.id.btndelete)
-
-      val icon_home = findViewById<ImageView>(R.id.icon_home)
-       val icon_add = findViewById<ImageView>(R.id.icon_add)
+        val footer = findViewById<BottomNavigationView>(R.id.footer)
 
 
 
@@ -95,18 +94,28 @@ class Display_page : AppCompatActivity() {
 
 
 
-        icon_home.setOnClickListener{
 
-            val intent = Intent(this,Homepage::class.java)
-            startActivity(intent)
+        footer.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.icon_home -> {
 
-        }
+                    val intent = Intent(this,Homepage::class.java)
+                    startActivity(intent)
+                    true
 
-
-        icon_add.setOnClickListener{
-
-            val intent = Intent(this,apointment_page::class.java)
-            startActivity(intent)
+                }
+                R.id.icon_add -> {
+                    val intent = Intent(this,apointment_page::class.java)
+                    startActivity(intent)
+                    true
+                }
+                R.id.icon_list -> {
+                    val intent = Intent(this,Display_page::class.java)
+                    startActivity(intent)
+                    true
+                }
+                else -> false
+            }
         }
 
         updatebutton.setOnClickListener{

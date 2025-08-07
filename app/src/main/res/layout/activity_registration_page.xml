@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".registration_page">
+    android:background="@android:color/white"
+    tools:context=".registration_page"
+    android:orientation="vertical">
 
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Create Account"
-        android:layout_marginLeft="150dp"
         android:layout_marginTop="20dp"
+        android:layout_gravity="center_horizontal"
         android:textSize="16dp"
         android:textStyle="bold"
         />
@@ -26,14 +29,14 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="?android:attr/listDivider"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="10dp"
         />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="90dp"
-        android:layout_marginLeft="140dp"
+       android:layout_margin="10dp"
+        android:layout_gravity="center"
         android:text="StyleBook"
         android:textSize="30sp" />
 
@@ -41,36 +44,34 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Create your account to start booking "
-        android:layout_marginTop="135sp"
-        android:layout_marginLeft="90dp" />
+        android:layout_gravity="center"/>
 
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="appointments "
-        android:layout_marginTop="155dp"
-        android:layout_marginLeft="155dp" />
+        android:layout_gravity="center" />
 
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Full Name"
-        android:layout_marginTop="200dp"
-        android:layout_marginLeft="30dp"
+       android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
         android:textStyle="bold"
         android:textSize="15sp"
         />
 
     <EditText
         android:id="@+id/ename"
-        android:layout_width="350dp"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="230dp"
         android:background="@drawable/edittext_border"
-        android:layout_marginLeft="25dp"
+        android:layout_margin="20dp"
         android:hint="Enter your full name"
+        android:textColorHint="@color/black"
         android:textStyle="bold"
         android:textSize="14sp"
         android:paddingStart="20dp"
@@ -80,19 +81,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Email Adress"
-        android:layout_marginTop="300dp"
-        android:layout_marginLeft="30dp"
+        android:layout_marginLeft="20dp"
         android:textStyle="bold"
         android:textSize="15sp"
         />
 
     <EditText
         android:id="@+id/eemail"
-        android:layout_width="350dp"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="330dp"
+        android:layout_margin="20dp"
         android:background="@drawable/edittext_border"
-        android:layout_marginLeft="25dp"
+        android:textColorHint="@color/black"
         android:hint="Enter your email"
         android:textStyle="bold"
         android:textSize="14sp"
@@ -103,43 +103,41 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Phone Number"
-        android:layout_marginTop="400dp"
-        android:layout_marginLeft="30dp"
+       android:layout_marginLeft="20dp"
         android:textStyle="bold"
         android:textSize="15sp"
         />
 
     <EditText
         android:id="@+id/enumber"
-        android:layout_width="350dp"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="430dp"
+        android:layout_margin="20dp"
         android:background="@drawable/edittext_border"
-        android:layout_marginLeft="25dp"
         android:hint="Enter your phone number"
-        android:textStyle="bold"
-        android:textSize="14sp"
+        android:inputType="number"
         android:paddingStart="20dp"
-        android:inputType="number" />
+        android:textColorHint="@color/black"
+        android:textSize="14sp"
+        android:textStyle="bold" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Password"
-        android:layout_marginTop="500dp"
-        android:layout_marginLeft="30dp"
+        android:layout_marginLeft="20dp"
         android:textStyle="bold"
         android:textSize="15sp"
         />
 
     <EditText
         android:id="@+id/epass"
-        android:layout_width="350dp"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="530dp"
+        android:layout_margin="20dp"
         android:background="@drawable/edittext_border"
         android:hint="Craete a password"
+        android:textColorHint="@color/black"
         android:inputType="textPassword"
         android:paddingStart="20dp"
         android:textSize="14sp"
@@ -150,30 +148,31 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Confirm Password"
-        android:layout_marginTop="600dp"
-        android:layout_marginLeft="30dp"
+        android:layout_marginLeft="20dp"
         android:textStyle="bold"
         android:textSize="15sp"
         />
 
     <EditText
         android:id="@+id/ecopass"
-        android:layout_width="350dp"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="630dp"
+        android:layout_margin="20dp"
         android:background="@drawable/edittext_border"
-        android:layout_marginLeft="25dp"
         android:hint="Confirm Password"
+        android:textColorHint="@color/black"
         android:textStyle="bold"
         android:textSize="14sp"
         android:paddingStart="20dp"
         android:inputType="textPassword" />
 
     <Button
-        android:layout_width="350dp"
+        android:id="@+id/esign"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="700dp"
-        android:layout_marginLeft="30dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:textColor="@color/white"
         android:text="Create Account"
         android:backgroundTint="@color/black" />
 
@@ -185,4 +184,4 @@
 
 
 
-</RelativeLayout>
+</LinearLayout>
