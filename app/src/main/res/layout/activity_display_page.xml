@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
+    android:background="@color/screen_background"
     tools:context=".Display_page"
     android:orientation="vertical">
 
@@ -39,7 +39,7 @@
                android:layout_height="wrap_content"
                android:layout_gravity="start"
                android:src="@drawable/iditicon"
-               app:tint="@android:color/black" />
+               app:tint="@color/light_blue" />
 
            <TextView
                android:layout_width="wrap_content"
@@ -47,7 +47,7 @@
                android:layout_gravity="start"
                android:text="Edit"
                android:textSize="15sp"
-               android:textColor="@android:color/black" />
+               android:textColor="@color/light_blue" />
 
 
        </LinearLayout>
@@ -57,6 +57,7 @@
            android:layout_height="wrap_content"
            android:layout_gravity="center"
            android:text="Appointments"
+           android:textColor="@color/light_blue"
            android:textAlignment="center"
            android:layout_weight="1"
            android:textSize="25sp"
@@ -79,7 +80,7 @@
                android:layout_gravity="end"
                android:layout_marginRight="5dp"
                android:src="@drawable/deleteicon"
-               app:tint="@android:color/black" />
+               app:tint="@color/light_blue" />
 
            <TextView
                android:layout_width="wrap_content"
@@ -87,7 +88,7 @@
                android:layout_gravity="end"
                android:text="Delete"
                android:textSize="14sp"
-               android:textColor="@android:color/black" />
+               android:textColor="@color/light_blue" />
 
 
        </LinearLayout>
@@ -123,6 +124,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:menu="@menu/nav_item"
+        app:itemIconTint="@color/nav_item_color"
+        app:itemTextColor="@color/nav_item_color"
         app:itemIconSize="30dp"
         android:background="@color/white"/>
 

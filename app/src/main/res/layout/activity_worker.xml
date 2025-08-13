@@ -5,10 +5,12 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+     android:background="@color/screen_background"
     tools:context=".registration_page">
 
-    <!--  android:background="@color/screen_background" -->
+
+
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -27,47 +29,29 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:layout_margin="10dp"
-                android:text="Edit Appointment"
+                android:text="Add New Worker"
                 android:textColor="@color/light_blue"
+                android:layout_gravity="center"
                 android:textSize="16dp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                />
+
+
 
 
             <View
                 android:id="@+id/divider"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
+                android:background="@color/light_blue"
                 android:layout_marginTop="10dp"
-                android:background="@color/light_blue" />
+                />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:text="Customer Id"
-                android:textColor="@color/light_blue"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/ecid"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_margin="20dp"
-                android:background="@drawable/edittext_border"
-                android:hint="Enter customer id"
-                android:textColorHint="@color/hint_color"
-                android:inputType="text"
-                android:paddingStart="20dp"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Customer Name"
+                android:text="Full Name"
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="20dp"
                 android:textColor="@color/light_blue"
@@ -76,12 +60,12 @@
                 />
 
             <EditText
-                android:id="@+id/ecname"
+                android:id="@+id/wname"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_margin="20dp"
                 android:background="@drawable/edittext_border"
-                android:hint="Enter customer name"
+                android:hint="Enter name"
                 android:textStyle="bold"
                 android:textSize="14sp"
                 android:textColor="@color/dark_gray"
@@ -100,12 +84,12 @@
                 />
 
             <EditText
-                android:id="@+id/enumber"
+                android:id="@+id/wnumber"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_margin="20dp"
                 android:background="@drawable/edittext_border"
-                android:hint="Enter your phone number"
+                android:hint="Enter phone number"
                 android:inputType="number"
                 android:paddingStart="20dp"
                 android:textColorHint="@color/hint_color"
@@ -115,108 +99,65 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Service"
+                android:text="Email"
                 android:layout_marginLeft="20dp"
                 android:textColor="@color/light_blue"
                 android:textStyle="bold"
                 android:textSize="15sp"
                 />
 
-            <RelativeLayout
+            <EditText
+                android:id="@+id/wemail"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="50dp"
+                android:layout_margin="20dp"
                 android:background="@drawable/edittext_border"
-                android:paddingEnd="36dp"
-                android:layout_margin="20dp">
+                android:hint="Enter Email "
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:textColor="@color/dark_gray"
+                android:textColorHint="@color/hint_color"
+                android:paddingStart="20dp"
+                android:inputType="text" />
 
-                <Spinner
-                    android:id="@+id/cservice"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@android:color/transparent"
-                    android:spinnerMode="dropdown"
-                    android:paddingStart="8dp"/>
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="3dp"
-                    android:src="@drawable/ic_arrow_drop_down"
-                    app:tint="@color/light_blue" />
-            </RelativeLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Style"
+                android:text="Adress"
                 android:layout_marginLeft="20dp"
                 android:textColor="@color/light_blue"
                 android:textStyle="bold"
                 android:textSize="15sp"
                 />
 
-            <RelativeLayout
+            <EditText
+                android:id="@+id/wadress"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="100dp"
+                android:layout_margin="20dp"
                 android:background="@drawable/edittext_border"
-                android:paddingEnd="36dp"
-                android:layout_margin="20dp">
+                android:hint="Enter Adress"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:textColor="@color/dark_gray"
+                android:textColorHint="@color/hint_color"
+                android:paddingStart="20dp"
+                android:inputType="text" />
 
-                <Spinner
-                    android:id="@+id/cstyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@android:color/transparent"
-                    android:spinnerMode="dropdown"
-                    android:paddingStart="8dp"/>
 
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="3dp"
-                    android:src="@drawable/ic_arrow_drop_down"
-                    app:tint="@color/light_blue" />
-            </RelativeLayout>
+
+
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Staff"
-                android:layout_marginLeft="20dp"
+                android:text="Work Schedule"
+                android:layout_margin="20dp"
                 android:textColor="@color/light_blue"
                 android:textStyle="bold"
-                android:textSize="15sp"
+                android:textSize="30sp"
                 />
-
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:background="@drawable/edittext_border"
-                android:paddingEnd="36dp"
-                android:layout_margin="20dp">
-
-                <Spinner
-                    android:id="@+id/cstaff"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@android:color/transparent"
-                    android:spinnerMode="dropdown"
-                    android:paddingStart="8dp"/>
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="3dp"
-                    android:src="@drawable/ic_arrow_drop_down"
-                    app:tint="@color/light_blue" />
-            </RelativeLayout>
 
 
             <LinearLayout
@@ -234,59 +175,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Date"
-                        android:layout_marginLeft="20dp"
-                        android:textColor="@color/light_blue"
-                        android:textStyle="bold"
-                        android:textSize="15sp"
-                        />
-
-
-                    <LinearLayout
-                        android:id="@+id/date_picker_container"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="20dp"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical"
-                        android:paddingHorizontal="12dp"
-                        android:paddingVertical="8dp"
-                        android:background="@drawable/edittext_border"
-                        android:clickable="true"
-                        android:focusable="true">
-
-                        <!-- Date Text -->
-                        <TextView
-                            android:id="@+id/tvSelectedDate"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="15-01-2025"
-                            android:textColor="@color/black"
-                            android:textSize="16sp"
-                            android:layout_marginEnd="8dp"
-                            android:fontFamily="sans-serif-medium" />
-
-                        <!-- Calendar Icon -->
-                        <ImageView
-                            android:id="@+id/ivCalendar"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/calendar"
-                            app:tint="@color/light_blue" />
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_weight="1">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Time"
+                        android:text="Start Time"
                         android:layout_marginLeft="20dp"
                         android:textColor="@color/light_blue"
                         android:textStyle="bold"
@@ -294,7 +183,7 @@
                         />
 
                     <LinearLayout
-                        android:id="@+id/time_picker_container"
+                        android:id="@+id/tstart"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="20dp"
@@ -308,7 +197,57 @@
 
                         <!-- Time Text -->
                         <TextView
-                            android:id="@+id/tvSelectedTime"
+                            android:id="@+id/tvselecttime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="10:30 AM"
+                            android:textColor="#000000"
+                            android:textSize="16sp"
+                            android:layout_marginEnd="8dp"
+                            android:fontFamily="sans-serif-medium" />
+
+                        <!-- Clock Icon -->
+                        <ImageView
+                            android:id="@+id/clock"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/clock"
+                            app:tint="@color/light_blue" />
+                    </LinearLayout>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="End Time"
+                        android:layout_marginLeft="20dp"
+                        android:textColor="@color/light_blue"
+                        android:textStyle="bold"
+                        android:textSize="15sp"
+                        />
+
+                    <LinearLayout
+                        android:id="@+id/tend"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="8dp"
+                        android:background="@drawable/edittext_border"
+                        android:clickable="true"
+                        android:focusable="true">
+
+                        <!-- Time Text -->
+                        <TextView
+                            android:id="@+id/tvSelected"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="10:30 AM"
@@ -330,13 +269,41 @@
 
             </LinearLayout>
 
-            <Button
 
-                android:id="@+id/btnupdate"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Commission Per Appointmment"
+                android:layout_marginLeft="20dp"
+                android:textColor="@color/light_blue"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                />
+
+            <EditText
+                android:id="@+id/wcharge"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_margin="20dp"
-                android:text="Edit Appointment"
+                android:background="@drawable/edittext_border"
+                android:hint="$300"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:textColor="@color/dark_gray"
+                android:textColorHint="@color/hint_color"
+                android:paddingStart="20dp"
+                android:inputType="number" />
+
+
+
+
+            <Button
+
+                android:id="@+id/btninsert"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="20dp"
+                android:text="Save"
                 android:textColor="@color/white"
                 android:backgroundTint="@color/light_blue"/>
 

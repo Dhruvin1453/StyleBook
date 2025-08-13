@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
+    android:background="@color/screen_background"
     android:orientation="vertical"
     tools:context=".Homepage">
 
@@ -33,31 +33,45 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@color/purple_primary_dark"
                     android:orientation="vertical">
+
 
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:layout_gravity="center_vertical"
                         android:orientation="horizontal">
+
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/scissors"
+                            android:layout_gravity="center_vertical"
+                            />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_margin="20dp"
                             android:layout_weight="1"
+                            android:textStyle="bold"
+                            android:layout_marginStart="5dp"
+                            android:layout_gravity="center_vertical"
                             android:text="StyleBook"
-                            android:textColor="@color/black"
-                            android:textSize="20sp" />
+                            android:textColor="@color/light_blue"
+                            android:textSize="25sp" />
 
                         <ImageView
                             android:layout_width="50dp"
-                            android:layout_height="40dp"
-                            android:layout_margin="10dp"
-                            android:src="@drawable/usericon"
+                            android:layout_height="50dp"
+                            app:tint="@color/light_blue"
+                            android:src="@drawable/useicon"
                             android:layout_gravity="center_vertical"
-
-                            />
+                            android:layout_marginEnd="5dp"
+                             />
 
                     </LinearLayout>
 
@@ -65,7 +79,7 @@
                         android:id="@+id/divider"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="?android:attr/listDivider" />
+                        android:background="@color/white" />
 
 
                     <androidx.cardview.widget.CardView
@@ -73,7 +87,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="15dp"
                         android:padding="12dp"
-                        app:cardBackgroundColor="@color/light_gray"
+                        app:cardBackgroundColor="@color/light_blue"
                         app:cardCornerRadius="12dp"
                         app:cardElevation="6dp">
 
@@ -90,10 +104,11 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:layout_marginTop="7dp"
+                                android:textStyle="bold"
                                 android:text="Today's Summary"
                                 android:layout_marginBottom="10dp"
-                                android:textColor="@color/black"
-                                android:textSize="15sp" />
+                                android:textColor="@color/white"
+                                android:textSize="20sp" />
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -108,7 +123,7 @@
                                     android:textAlignment="center"
                                     android:layout_weight="1"
                                     android:text="0"
-                                    android:textColor="@color/black"
+                                    android:textColor="@color/white"
                                     android:textSize="30sp" />
 
 
@@ -119,7 +134,7 @@
                                    android:layout_weight="1"
                                     android:textAlignment="center"
                                     android:text="$240"
-                                    android:textColor="@color/black"
+                                    android:textColor="@color/white"
                                     android:textSize="30sp" />
 
                             </LinearLayout>
@@ -137,7 +152,7 @@
                                     android:textAlignment="center"
                                     android:text="Appointments"
                                     android:layout_marginBottom="10dp"
-                                    android:textColor="@color/black"
+                                    android:textColor="@color/white"
                                     android:textSize="15sp" />
 
 
@@ -148,7 +163,7 @@
                                     android:layout_weight="1"
                                     android:text="Revenue"
                                     android:layout_marginBottom="10dp"
-                                    android:textColor="@color/black"
+                                    android:textColor="@color/white"
                                     android:textSize="15sp" />
 
                             </LinearLayout>
@@ -163,6 +178,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/white"
                         android:layout_marginLeft="30dp"
                         android:layout_marginTop="30dp"
                         android:text="Appointments"
@@ -184,9 +200,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
-                        android:backgroundTint="@color/midium_gray"
+                        android:backgroundTint="@color/white"
                         android:text=" View All Appointments"
-                        android:textColor="@color/dark_gray"
+                        android:textColor="@color/light_blue"
                         app:cornerRadius="8dp" />
 
 
@@ -218,6 +234,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
+                    android:backgroundTint="#E3F4FF"
                     android:clickable="true"
                     android:focusable="true"
                     android:foreground="?attr/selectableItemBackground"
@@ -236,13 +253,13 @@
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:src="@drawable/addperson"
-                            app:tint="@android:color/black" />
+                            app:tint="@color/add_app" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Add New Appointment"
-                            android:textColor="@android:color/black"
+                            android:textColor="@android:color/background_dark"
                             android:textSize="12sp" />
 
 
@@ -259,6 +276,7 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:foreground="?attr/selectableItemBackground"
+                    android:backgroundTint="@color/quick_stock_bg"
                     app:cardCornerRadius="12dp"
                     app:cardElevation="6dp">
 
@@ -275,7 +293,7 @@
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:src="@drawable/iditicon"
-                            app:tint="@android:color/black" />
+                            app:tint="@color/quick_stock_icon" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -310,6 +328,7 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:foreground="?attr/selectableItemBackground"
+                    android:backgroundTint="@color/quick_analytics_bg"
                     app:cardCornerRadius="12dp"
                     app:cardElevation="6dp">
 
@@ -325,7 +344,7 @@
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:src="@drawable/deleteicon"
-                            app:tint="@android:color/black" />
+                            app:tint="@color/quick_analytics_icon"/>
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -348,6 +367,7 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:foreground="?attr/selectableItemBackground"
+                    android:backgroundTint="@color/quick_alerts_bg"
                     app:cardCornerRadius="12dp"
                     app:cardElevation="6dp">
 
@@ -363,7 +383,7 @@
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:src="@drawable/scissor"
-                            app:tint="@android:color/black" />
+                            app:tint="@color/quick_alerts_icon" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -390,10 +410,12 @@
                     android:id="@+id/btnaddstyle"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                    android:layout_margin="10dp"
                     android:clickable="true"
                     android:focusable="true"
                     android:foreground="?attr/selectableItemBackground"
+                    android:backgroundTint="@color/quick_extra_bg"
                     app:cardCornerRadius="12dp"
                     app:cardElevation="6dp">
 
@@ -409,7 +431,7 @@
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:src="@drawable/addperson"
-                            app:tint="@android:color/black" />
+                            app:tint="@color/quick_extra_icon"/>
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -417,6 +439,47 @@
                             android:text="Add New Style"
                             android:textColor="@android:color/black"
                             android:textSize="12sp" />
+
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+
+                <androidx.cardview.widget.CardView
+
+                    android:id="@+id/btnaddtsaff"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:backgroundTint="@color/staff_bg"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="6dp">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="12dp">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/addstaff"
+                            app:tint="@color/staff_icon"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:text="Add Staff"
+                            android:textColor="@android:color/black"
+                            android:textSize="14sp" />
 
 
                     </LinearLayout>
@@ -437,6 +500,8 @@
         android:layout_height="wrap_content"
         app:menu="@menu/nav_item"
         app:itemIconSize="30dp"
+        app:itemIconTint="@color/nav_item_color"
+        app:itemTextColor="@color/nav_item_color"
         android:background="@color/white"/>
 
     <!--<androidx.cardview.widget.CardView-->

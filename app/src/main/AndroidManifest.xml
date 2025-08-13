@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StyleBook">
         <activity
+            android:name=".stafff"
+            android:exported="false" />
+        <activity
+            android:name=".worker"
+            android:exported="false" />
+        <activity
             android:name=".Update_appointment"
             android:exported="false" />
         <activity
@@ -24,11 +30,11 @@
             android:name=".registration_page"
             android:exported="false" />
         <activity
-            android:name=".Homepage"
+            android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
-            android:exported="true" >
+            android:name=".Homepage"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -38,6 +38,7 @@ class Homepage : AppCompatActivity() {
         val addservice = findViewById<CardView>(R.id.addservice)
         val btnaddstyle = findViewById<CardView>(R.id.btnaddstyle)
         val view_all = findViewById<Button>(R.id.view_all)
+        val btnaddtsaff = findViewById<CardView>(R.id.btnaddtsaff)
         demo = DataBaseDemo(this)
 
         updatelist()
@@ -214,6 +215,15 @@ class Homepage : AppCompatActivity() {
 
         }
 
+
+        btnaddtsaff.setOnClickListener{
+
+            val intent = Intent(this,worker::class.java)
+            startActivity(intent)
+
+        }
+
+
         footer.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.icon_home -> {
@@ -223,8 +233,8 @@ class Homepage : AppCompatActivity() {
                     true
 
                 }
-                R.id.icon_add -> {
-                    val intent = Intent(this,apointment_page::class.java)
+                R.id.staff -> {
+                    val intent = Intent(this,stafff::class.java)
                     startActivity(intent)
                     true
                 }
@@ -293,6 +303,7 @@ class Homepage : AppCompatActivity() {
 
                 val id = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseDemo.CUS_ID))
                 val name = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseDemo.CUS_CNAME))
+                val no = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseDemo.CUS_NUM))
                 val style = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseDemo.CUS_STY))
                 val service = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseDemo.CUS_SER))
                 val charges = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseDemo.SER_CHAR))
@@ -301,8 +312,9 @@ class Homepage : AppCompatActivity() {
 
                 val itemeView = layoutInflater.inflate(R.layout.list_item,dynamicList,false)
 
-                itemeView.findViewById<TextView>(R.id.tid).text = id
+
                 itemeView.findViewById<TextView>(R.id.tname).text = name
+                itemeView.findViewById<TextView>(R.id.tphone).text = no
                 itemeView.findViewById<TextView>(R.id.tstyle).text = style
                 itemeView.findViewById<TextView>(R.id.tser).text = service
                 itemeView.findViewById<TextView>(R.id.tmoney).text = charges

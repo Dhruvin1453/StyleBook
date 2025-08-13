@@ -104,8 +104,8 @@ class Display_page : AppCompatActivity() {
                     true
 
                 }
-                R.id.icon_add -> {
-                    val intent = Intent(this,apointment_page::class.java)
+                R.id.staff -> {
+                    val intent = Intent(this,stafff::class.java)
                     startActivity(intent)
                     true
                 }
@@ -133,8 +133,8 @@ class Display_page : AppCompatActivity() {
     fun displaydata() {
 
         val cursor = demo.readdata()
-        val columns = arrayOf(DataBaseDemo.CUS_ID,DataBaseDemo.CUS_CNAME,DataBaseDemo.CUS_STY,DataBaseDemo.CUS_SER,DataBaseDemo.CUS_CHAR,DataBaseDemo.CUS_DATE,DataBaseDemo.CUS_TIME)
-        val toView = intArrayOf(R.id.tid,R.id.tname,R.id.tstyle,R.id.tser,R.id.tmoney,R.id.tdate,R.id.ttime)
+        val columns = arrayOf(DataBaseDemo.CUS_CNAME,DataBaseDemo.CUS_NUM,DataBaseDemo.CUS_STY,DataBaseDemo.CUS_SER,DataBaseDemo.CUS_WOR,DataBaseDemo.CUS_CHAR,DataBaseDemo.CUS_DATE,DataBaseDemo.CUS_TIME)
+        val toView = intArrayOf(R.id.tname,R.id.tphone,R.id.tstyle,R.id.tser,R.id.worker,R.id.tmoney,R.id.tdate,R.id.ttime)
 
         val adapter = SimpleCursorAdapter(this,R.layout.list_item,cursor,columns,toView,0)
         //listview
