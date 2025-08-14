@@ -2,6 +2,7 @@ package com.example.stylebook
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.text.InputType
 import android.widget.Button
@@ -32,9 +33,9 @@ class Homepage : AppCompatActivity() {
         setContentView(R.layout.activity_homepage)
 
         val footer = findViewById<BottomNavigationView>(R.id.footer)
-        val editbutton = findViewById<CardView>(R.id.editbutton)
+
         val btnaddapointment = findViewById<CardView>(R.id.btnaddapointment)
-        val btndelete = findViewById<CardView>(R.id.btndelete)
+
         val addservice = findViewById<CardView>(R.id.addservice)
         val btnaddstyle = findViewById<CardView>(R.id.btnaddstyle)
         val view_all = findViewById<Button>(R.id.view_all)
@@ -48,11 +49,7 @@ class Homepage : AppCompatActivity() {
             startActivity(intent)
         }
 
-        editbutton.setOnClickListener{
-            val intent = Intent(this,Update_appointment::class.java)
-            startActivity(intent)
 
-        }
 
         btnaddapointment.setOnClickListener{
 
@@ -60,55 +57,7 @@ class Homepage : AppCompatActivity() {
             startActivity(intent)
         }
 
-            btndelete.setOnClickListener{
 
-                val builder = AlertDialog.Builder(this)
-                builder.setTitle("Delete Customer")
-                builder.setMessage("Enter Customer Id For Delete :")
-
-
-                val inpute = EditText(this)
-                inpute.hint = "Customer Id :"
-                inpute.inputType = InputType.TYPE_CLASS_TEXT
-                inpute.setPadding(50,50,50,50)
-
-
-
-                builder.setView(inpute)
-
-
-                builder.setPositiveButton("Delete"){ dialog, _ ->
-
-                    val custId = inpute.text.toString().trim()
-
-                    if(custId.isNotEmpty()) {
-
-                        val result =   demo.deletedata(custId)
-
-                        if(result > 0){
-                            updatestat()
-                            updatelist()
-                            Toast.makeText(this,"Customer Deleted", Toast.LENGTH_LONG).show()
-                        }else{
-
-                            Toast.makeText(this,"Customer Not Found", Toast.LENGTH_LONG).show()
-                        }
-
-                    }
-
-                }
-
-
-                builder.setNegativeButton("Cancle"){ dialoge, _ ->
-
-                    dialoge.dismiss()
-                }
-
-
-                builder.show()
-
-
-            }
 
 
         addservice.setOnClickListener{
@@ -306,6 +255,7 @@ class Homepage : AppCompatActivity() {
                 val no = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseDemo.CUS_NUM))
                 val style = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseDemo.CUS_STY))
                 val service = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseDemo.CUS_SER))
+                val worker = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseDemo.CUS_WOR))
                 val charges = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseDemo.SER_CHAR))
                 val date = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseDemo.CUS_DATE))
                 val time = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseDemo.CUS_TIME))
@@ -317,9 +267,41 @@ class Homepage : AppCompatActivity() {
                 itemeView.findViewById<TextView>(R.id.tphone).text = no
                 itemeView.findViewById<TextView>(R.id.tstyle).text = style
                 itemeView.findViewById<TextView>(R.id.tser).text = service
+                itemeView.findViewById<TextView>(R.id.worker).text = worker
                 itemeView.findViewById<TextView>(R.id.tmoney).text = charges
                 itemeView.findViewById<TextView>(R.id.tdate).text = date
                 itemeView.findViewById<TextView>(R.id.ttime).text = time
+
+                itemeView.findViewById<ImageView>(R.id.btn_call).setOnClickListener {
+                    val intent = Intent(Intent.ACTION_DIAL)
+                    intent.data = Uri.parse("tel:$no")
+                    startActivity(intent)
+                }
+
+
+                itemeView.findViewById<Button>(R.id.btn_delete).setOnClickListener {
+                    val result = demo.deletedata(id)
+                    if (result > 0) {
+                        Toast.makeText(this, "Deleted", Toast.LENGTH_SHORT).show()
+                        updatelist()
+                    } else {
+                        Toast.makeText(this, "Customer Not Found", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                itemeView.findViewById<Button>(R.id.btn_edit).setOnClickListener {
+                    val intent = Intent(this, Update_appointment::class.java)
+                    intent.putExtra("id", id)
+                    intent.putExtra("name", name)
+                    intent.putExtra("phone", no)
+                    intent.putExtra("style", style)
+                    intent.putExtra("service", service)
+                    intent.putExtra("worker", worker)
+                    intent.putExtra("price", charges)
+                    intent.putExtra("date", date)
+                    intent.putExtra("time", time)
+                    startActivity(intent)
+                }
 
 
                 dynamicList.addView(itemeView)

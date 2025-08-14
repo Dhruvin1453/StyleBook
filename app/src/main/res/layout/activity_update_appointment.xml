@@ -42,28 +42,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@color/light_blue" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:text="Customer Id"
-                android:textColor="@color/light_blue"
-                android:textSize="15sp"
-                android:textStyle="bold" />
 
-            <EditText
-                android:id="@+id/ecid"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_margin="20dp"
-                android:background="@drawable/edittext_border"
-                android:hint="Enter customer id"
-                android:textColorHint="@color/hint_color"
-                android:inputType="text"
-                android:paddingStart="20dp"
-                android:textSize="14sp"
-                android:textStyle="bold" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -11,7 +11,7 @@ class DataBaseDemo(context: Context) : SQLiteOpenHelper(context,DATABASE_NAME,nu
     companion object{
 
         const val  DATABASE_NAME = "MYDATA"
-        const val  DATABASE_VERSION = 13
+        const val  DATABASE_VERSION = 14
 
 
 
@@ -34,6 +34,7 @@ class DataBaseDemo(context: Context) : SQLiteOpenHelper(context,DATABASE_NAME,nu
         const val CUS_CHAR = "_charge"
         const val CUS_DATE = "_date"
         const val CUS_TIME = "_time"
+
 
 
 
@@ -206,6 +207,9 @@ class DataBaseDemo(context: Context) : SQLiteOpenHelper(context,DATABASE_NAME,nu
 
 
     }
+
+
+
 
 
 
@@ -385,6 +389,13 @@ class DataBaseDemo(context: Context) : SQLiteOpenHelper(context,DATABASE_NAME,nu
         cursor.close()
         db.close()
     }
+
+
+    fun deleteworker(id:String?):Int{
+        val db = writableDatabase
+        return db.delete(WTABLE_NAME,"$WOR_ID = ?", arrayOf(id.toString()))
+    }
+
 
 
 

@@ -29,7 +29,7 @@ class Update_appointment : AppCompatActivity() {
 
         setContentView(R.layout.activity_update_appointment)
 
-        val ecid = findViewById<EditText>(R.id.ecid)
+
         val enumber = findViewById<EditText>(R.id.enumber)
         val ecname = findViewById<EditText>(R.id.ecname)
         val cservice = findViewById<Spinner>(R.id.cservice)
@@ -46,9 +46,7 @@ class Update_appointment : AppCompatActivity() {
 
 
 
-
-
-        val service = demo.readser().toMutableList()
+         val service = demo.readser().toMutableList()
         service.add(0, "Select service")
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, service)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -65,6 +63,26 @@ class Update_appointment : AppCompatActivity() {
         val adapter3 = ArrayAdapter(this, android.R.layout.simple_spinner_item, staff)
         adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         cstaff.adapter = adapter3
+
+
+        val intent = intent
+
+        ecname.setText(intent.getStringExtra("name"))
+        enumber.setText(intent.getStringExtra("phone"))
+
+
+        val serviceValue = intent.getStringExtra("service")
+        val styleValue = intent.getStringExtra("style")
+        val staffValue = intent.getStringExtra("worker")
+
+        setSpinnerSelection(cservice, serviceValue)
+        setSpinnerSelection(cstyle, styleValue)
+        setSpinnerSelection(cstaff, staffValue)
+
+
+        tvSelectedDate.text = intent.getStringExtra("date")
+        tvSelectedTime.text = intent.getStringExtra("time")
+
 
 
 
@@ -144,7 +162,7 @@ class Update_appointment : AppCompatActivity() {
 
 
 
-                val id = ecid.text.toString()
+                val id = intent.getStringExtra("id")
 
                 demo.updatedata(id,custName, custNumer,custStyle,custSer,staff,charge,custDate,custTime)
 
@@ -184,4 +202,17 @@ class Update_appointment : AppCompatActivity() {
 
 
     }
+
+    private fun setSpinnerSelection(spinner: Spinner, value: String?) {
+        if (value != null) {
+            val adapter = spinner.adapter
+            for (i in 0 until adapter.count) {
+                if (adapter.getItem(i).toString() == value) {
+                    spinner.setSelection(i)
+                    break
+                }
+            }
+        }
+    }
+
 }
