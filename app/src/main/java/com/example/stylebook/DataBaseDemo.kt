@@ -144,6 +144,17 @@ class DataBaseDemo(context: Context) : SQLiteOpenHelper(context,DATABASE_NAME,nu
     }
 
 
+    fun isEmailExists(email: String): Boolean {
+        val db = this.readableDatabase
+        val query = "SELECT * FROM $USER_TABLE WHERE $USER_EMAIL = ?"
+        val cursor = db.rawQuery(query, arrayOf(email))
+        val exists = cursor.count > 0
+        cursor.close()
+        return exists
+    }
+
+
+
       fun insertData(cname : String ?,cnum : String ?,cstyle : String? ,cserv : String? ,cwork : String? ,ccharge : String? ,cdate : String?,ctime : String? ):Long
       {
 

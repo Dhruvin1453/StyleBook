@@ -2,14 +2,13 @@ package com.example.stylebook
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TimePicker
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import androidx.core.widget.addTextChangedListener
 
 class registration_page : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,45 +24,191 @@ class registration_page : AppCompatActivity() {
         val esign = findViewById<Button>(R.id.esign)
         val demo:DataBaseDemo = DataBaseDemo(this)
 
+        var uname = ename.text.toString()
+        var email = eemail.text.toString().trim()
+        var number = enumber.text.toString().trim()
+        var pass = epass.text.toString().trim()
+        var copss = ecopass.text.toString().trim()
+
+
+
+
+        ename.addTextChangedListener(object : TextWatcher{
+            override fun afterTextChanged(p0: Editable?) {
+            }
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+                val uname = ename.text.toString().trim()
+                if(uname.isEmpty() || uname.length < 2){
+
+                    ename.error = "Enater Valid Name"
+
+                }else{
+                    ename.error = null
+                }
+
+            }
+
+        })
+
+
+        eemail.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {}
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                val email = eemail.text.toString().trim()
+
+                when {
+                    !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches() -> {
+                        eemail.error = "Enter a Valid Email"
+                    }
+                    demo.isEmailExists(email) -> {
+                        eemail.error = "Email Already Exists"
+                    }
+                    else -> {
+                        eemail.error = null
+                    }
+                }
+            }
+        })
+
+
+
+
+
+        enumber.addTextChangedListener(object : TextWatcher{
+
+            override fun afterTextChanged(p0: Editable?) {
+            }
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+                var number = enumber.text.toString().trim()
+                if(number.length!= 10 || !number.all { it.isDigit() } ){
+
+                    enumber.error = "Enter Valid 10 digit Number"
+
+                }else{
+                    enumber.error = null
+                }
+            }
+        })
+
+
+
+        epass.addTextChangedListener(object : TextWatcher {
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+                var pass = epass.text.toString().trim()
+                if (pass.length <6 || !pass.any {it.isDigit()}){
+
+                    epass.error = "Password must be 6 character and contain a number "
+                }
+                else{
+                    epass.error = null
+                }
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+
+            }
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+        })
+
+
+
+        ecopass.addTextChangedListener(object : TextWatcher{
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                var pass = epass.text.toString().trim()
+                var copss = ecopass.text.toString().trim()
+
+                if (pass != copss){
+
+                    ecopass.error = "Password do not match"
+                }
+                else{
+                    ecopass.error = null
+                }
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+
+            }
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+        })
+
+
 
         esign.setOnClickListener{
 
+            val uname = ename.text.toString()
+            var email = eemail.text.toString().trim()
+            var number = enumber.text.toString().trim()
+            var pass = epass.text.toString().trim()
+            var copss = ecopass.text.toString().trim()
 
-            var uname = ename.text.toString()
-            var email = eemail.text.toString()
-            var number = enumber.text.toString()
-            var pass = epass.text.toString()
-            var copss = ecopass.text.toString()
+            if (uname.isEmpty() || uname.length < 2) {
 
-
-
-          if(uname.isNotEmpty() && email.isNotEmpty() && number.isNotEmpty() && pass.isNotEmpty() && copss.isNotEmpty()){
-
-              if (copss.equals(pass)){
-
-                 var isInserted=  demo.userinsert(uname,email,number,pass)
-
-                  if (isInserted){
-
-                      Toast.makeText(this,"Sign Up Successfully !!",Toast.LENGTH_LONG).show()
-
-                      val intent = Intent(this,MainActivity::class.java)
-                      startActivity(intent)
-
-                  }
+                return@setOnClickListener
+            }
 
 
-              } else{
+            if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
 
-                  Toast.makeText(this,"Please Enter Same Password",Toast.LENGTH_LONG).show()
-              }
+                return@setOnClickListener
+            }
+            if (demo.isEmailExists(email)) {
 
-          }else{
+                return@setOnClickListener
+            }
 
-              Toast.makeText(this,"Please Enter All The Fields",Toast.LENGTH_LONG).show()
 
-          }
+            if (number.length != 10 || !number.all { it.isDigit() }) {
 
+                return@setOnClickListener
+            }
+
+            if (pass.length <6 || !pass.any {it.isDigit()}){
+
+                return@setOnClickListener
+            }
+
+
+            if (pass != copss) {
+
+                return@setOnClickListener
+            }
+
+            val isInserted = demo.userinsert(uname,email,number,pass)
+            if (isInserted){
+
+
+                Toast.makeText(this,"Sign  Successfully !!",Toast.LENGTH_LONG).show()
+                val intent = Intent(this,MainActivity::class.java)
+                startActivity(intent)
+            }else{
+
+                Toast.makeText(this,"Sign Up Failed.Try again.",Toast.LENGTH_LONG).show()
+            }
 
 
 
